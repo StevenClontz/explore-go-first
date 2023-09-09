@@ -1,9 +1,11 @@
 <script lang="ts">
     import { onMount } from 'svelte'
     import Chart from 'chart.js/auto'
+    import { dice } from '$lib';
     let chartCanvas:HTMLCanvasElement
     let chart:Chart
     export let results:number[][]
+    export let diceString:string
     const countPlaces = (rs:number[][], place:number) => {
         return rs.reduce((p,c)=>{
             let first = c.indexOf(place)
@@ -25,29 +27,13 @@
             {
                 type: 'line',
                 data: {
-                    labels: ["P1","P2","P3","P4","P5"],
-                    datasets: [
-                        {
-                            label: 'Percentage of firsts',
-                            data: []
-                        },
-                        {
-                            label: 'Percentage of seconds',
-                            data: []
-                        },
-                        {
-                            label: 'Percentage of thirds',
-                            data: []
-                        },
-                        {
-                            label: 'Percentage of fourths',
-                            data: []
-                        },
-                        {
-                            label: 'Percentage of fifths',
+                    labels: dice(diceString),
+                    datasets: dice(diceString).map((_,i)=>{
+                        return {
+                            label: '% place '+(i+1).toString(),
                             data: []
                         }
-                    ]
+                    })
                 },
                 options: {
                     scales: {

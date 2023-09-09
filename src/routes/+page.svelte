@@ -24,7 +24,7 @@ setInterval(appendRoll,5);
 </script>
 
 <div>
-    <Chart {results}/>
+    <Chart {results} {diceString}/>
 </div>
 
 <div>
