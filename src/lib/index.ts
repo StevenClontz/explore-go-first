@@ -1,6 +1,6 @@
 // place files you want to import through the `$lib` alias in this folder.
 
-export const sample = (a:Array<any>) => {
+export const sample = (a:Array<number>) => {
     return a[Math.floor((Math.random()*a.length))]
 }
 
@@ -20,6 +20,6 @@ export const roll = (diceString:string) => {
 }
 
 export const result = (roll:number[]) => {
-    const sorted = [...roll].sort();
+    const sorted = [...roll].sort((a,b)=>b-a);
     return roll.map((r) => sorted.indexOf(r) + 1);
 }

@@ -10,7 +10,7 @@ const appendRoll = () => {
     if (rolling) {
         let newRoll = roll(diceString)
         rolls = [...rolls, newRoll]
-        displayRolls = newRoll + "\n" + displayRolls
+        displayRolls = newRoll.toString() + " / " + result(newRoll).toString() + "\n" + displayRolls
         results = [...results, result(newRoll)]
     }
 }
@@ -32,7 +32,7 @@ setInterval(appendRoll,5);
 </div>
 
 <div>
-    <textarea disabled rows="10" value={displayRolls}/>
+    <textarea disabled rows="10" cols="40" value={displayRolls}/>
     
     <button on:click={()=>rolling=!rolling}>
         {#if rolling}
