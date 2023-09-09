@@ -1,14 +1,9 @@
 <script lang="ts">
 import Chart from "../components/Chart.svelte";
+import { sample, dice, faces } from "$lib";
 let goFirst:string = "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
-const faces = ["a","b","c","d","e"].map(l=>[...goFirst.matchAll(
-    new RegExp(l,"g"))].map(v=>typeof v.index == "undefined" ? 0 : v.index+1)
-)
-const sample = (a:Array<number>) => {
-    return a[Math.floor((Math.random()*a.length))]
-}
 const roll = () => {
-    return faces.map(face=>sample(face))
+    return faces(goFirst).map(face=>sample(face))
 }
 const result = (roll:number[]) => {
   const sorted = [...roll].sort();
@@ -40,7 +35,7 @@ setInterval(appendRoll,5);
 </div>
 
 <div>
-    <input style="width:100%" bind:value={goFirst}/>
+    <input on:change={resetRolls} style="width:100%" bind:value={goFirst}/>
 </div>
 
 <div>
