@@ -9,12 +9,20 @@ const sample = (a:Array<number>) => {
 const roll = () => {
     return faces.map(face=>sample(face))
 }
+const result = (roll:number[]) => {
+  const sorted = [...roll].sort();
+  return roll.map((r) => sorted.indexOf(r) + 1);
+}
 let rolls : number[][] = []
-$: displayRolls =  rolls.map(roll=>roll.toString()).join("\n")
+let results : number[][] = []
+let displayRolls = ""
 let rolling = false
 const appendRoll = () => {
     if (rolling) {
-        rolls = [...rolls, roll()]
+        let newRoll = roll()
+        rolls = [...rolls, newRoll]
+        displayRolls = displayRolls + newRoll + "\n"
+        results = [...results, result(newRoll)]
     }
 }
 setInterval(appendRoll,500);
