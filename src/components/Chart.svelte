@@ -43,5 +43,5 @@
 </script>
 
 <div>
-    <canvas bind:this={chartCanvas}/>
+    <canvas style="max-height:60vh" bind:this={chartCanvas}/>
 </div>

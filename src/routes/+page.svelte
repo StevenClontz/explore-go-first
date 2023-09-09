@@ -35,17 +35,23 @@ const resetRolls = () => {
 setInterval(appendRoll,10);
 </script>
 
-<textarea disabled rows="10" value={displayRolls}/>
+<p><a href="https://github.com/StevenClontz/explore-go-first">GitHub</a></p>
 
-<button on:click={()=>rolling=!rolling}>
-    {#if rolling}
-        Stop rolling
-    {:else}
-        Start rolling
-    {/if}
-</button>
-<button on:click={resetRolls}>
-    Reset rolls
-</button>
+<div>
+    <Chart {results}/>
+</div>
 
-<Chart {results}/>
+<div>
+    <textarea disabled rows="10" value={displayRolls}/>
+    
+    <button on:click={()=>rolling=!rolling}>
+        {#if rolling}
+            Stop rolling
+        {:else}
+            Start rolling
+        {/if}
+    </button>
+    <button on:click={resetRolls}>
+        Reset rolls
+    </button>
+</div>
