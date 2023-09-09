@@ -1,4 +1,5 @@
 <script lang="ts">
+import Chart from "../components/Chart.svelte";
 const goFirst:string = "abcdeedcbadcbeebcdaaaaecbddbceecbddbceaaaadcbeebcdabcdeedcbaaadcbeebcdabcdeedcbaaecdbbdceaecdbbdceaabcdeedcbadcbeebcdaaaaaaecbddbceaabceddecbdcebbecdaadcebbecdbceddecbaaecbddbceaaaaaadcebbecdaecdbbdceaabcdeedcbabcdeedcbaaecdbbdceadcebbecdaaaecbddbceabceddecbaaaadcebbecddcebbecdaaaabceddecbaecbddbcea"
 const faces = ["a","b","c","d","e"].map(l=>[...goFirst.matchAll(
     new RegExp(l,"g"))].map(v=>typeof v.index == "undefined" ? 0 : v.index+1)
@@ -21,7 +22,7 @@ const appendRoll = () => {
     if (rolling) {
         let newRoll = roll()
         rolls = [...rolls, newRoll]
-        displayRolls = displayRolls + newRoll + "\n"
+        displayRolls = newRoll + "\n" + displayRolls
         results = [...results, result(newRoll)]
     }
 }
@@ -37,3 +38,7 @@ setInterval(appendRoll,500);
         Start rolling
     {/if}
 </button>
+
+{#key results}
+<Chart {results}/>
+{/key}
