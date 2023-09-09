@@ -2,7 +2,7 @@
 import Chart from "../components/Chart.svelte";
 import { Dice } from "$lib";
 let diceString:string = "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
-let dice = new Dice(diceString)
+$: dice = new Dice(diceString)
 let rolling = false
 const rollDice = () => {
     if (rolling) {

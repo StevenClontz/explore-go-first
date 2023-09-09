@@ -5,64 +5,54 @@ export function sample<Type>(arr: Type[]): Type {
     return arr[Math.floor((Math.random()*arr.length))]
 }
 
-interface ResultI {
-    [dieName:string]: number
-}
-interface RollI {
-    [dieName:string]: number
-}
-
 export class Dice {
-    diceString: string;
-    rolls: RollI[]
+    diceString: string
+    names: string[]
+    ranks: number[]
+    faces: number[][]
+    percentages: number[][]
+    // this.percentages[i][j] = ith rank, jth die
+    displayLines: string[]
+    rolls: number[][]
    
     constructor(diceString: string) {
       this.diceString = diceString;
+      this.names = [...new Set(this.diceString.split(""))].sort().slice(0,5)
+      this.ranks = Array.from(new Array(this.names.length), (x,i) => i)
+      this.faces = this.names.map(dieName=>{
+        const matches = [...this.diceString.matchAll(new RegExp(dieName,"g"))]
+        return matches.map(match=>typeof match.index !== "undefined" ? match.index : 0)
+      })
+      this.percentages = this.names.map(_=>this.names.map(_=>0))
+      this.displayLines = []
       this.rolls = []
     }
 
-    names() {
-        return [...new Set(this.diceString.split(""))].sort().slice(0,5)
-    }
-
-    faces(dieName:string):number[] {
-        const matches = [...this.diceString.matchAll(new RegExp(dieName,"g"))]
-        return matches.map(match=>typeof match.index !== "undefined" ? match.index : 0)
+    getFaces(dieName:string) {
+        return this.faces[this.names.indexOf(dieName)]
     }
 
     rollDice():void {
-        let newRoll:RollI = {}
-        this.names().forEach((dieName)=>{
-            newRoll[dieName] = sample(this.faces(dieName))
+        const newRoll = this.names.map(dieName=>sample(this.getFaces(dieName)))
+        const prevCount = this.rolls.length
+        let percentageMults = this.percentages.map(ps=>ps.map(p=>p*prevCount))
+        this.result(newRoll).forEach((rank,dieIndex)=>{
+            percentageMults[rank][dieIndex] += 1
         })
+        this.percentages = percentageMults.map(ps=>ps.map(p=>p/(prevCount+1)))
         this.rolls.push(newRoll)
+        this.displayLines = [
+            newRoll.toString()+" / "+this.result(newRoll).toString(),
+            ...this.displayLines.slice(0,20)
+        ]
     }
 
-    result(roll:RollI):ResultI {
-        const values = this.names().map(name=>roll[name]).sort()
-        let result:ResultI = {}
-        this.names().forEach(name=>{
-            result[name] = values.indexOf(roll[name])
-        })
-        return result
-    }
-
-    results():ResultI[] {
-        return this.rolls.map(roll=>this.result(roll))
-    }
-
-    resultPercentage(dieName:string,place:number):number {
-        if (this.rolls.length == 0) {
-            return 0
-        }
-        return this.results().filter(result=>result[dieName]==place).length/this.results().length
+    result(roll:number[]):number[] {
+        const values = [...roll].sort((a,b)=>a-b)
+        return roll.map(value=>values.indexOf(value))
     }
 
     display():string {
-        return this.rolls.map(roll=>this.displayR(roll) + " / "+this.displayR(this.result(roll))).reverse().join("\n")
-    }
-
-    displayR(roll:RollI|ResultI):string {
-        return this.names().map(name=>roll[name]).toString()
+        return this.displayLines.join("\n")
     }
 }
