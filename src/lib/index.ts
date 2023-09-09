@@ -14,3 +14,12 @@ export const faces = (diceString:string) => {
         .map(v=>typeof v.index == "undefined" ? 0 : v.index+1)
     })
 }
+
+export const roll = (diceString:string) => {
+    return faces(diceString).map(face=>sample(face))
+}
+
+export const result = (roll:number[]) => {
+    const sorted = [...roll].sort();
+    return roll.map((r) => sorted.indexOf(r) + 1);
+}

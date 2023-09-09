@@ -1,21 +1,14 @@
 <script lang="ts">
 import Chart from "../components/Chart.svelte";
-import { sample, dice, faces } from "$lib";
-let goFirst:string = "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
-const roll = () => {
-    return faces(goFirst).map(face=>sample(face))
-}
-const result = (roll:number[]) => {
-  const sorted = [...roll].sort();
-  return roll.map((r) => sorted.indexOf(r) + 1);
-}
+import { roll, result } from "$lib";
+let diceString:string = "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
 let rolls : number[][] = []
 let results : number[][] = []
 let displayRolls = ""
 let rolling = false
 const appendRoll = () => {
     if (rolling) {
-        let newRoll = roll()
+        let newRoll = roll(diceString)
         rolls = [...rolls, newRoll]
         displayRolls = newRoll + "\n" + displayRolls
         results = [...results, result(newRoll)]
@@ -35,7 +28,7 @@ setInterval(appendRoll,5);
 </div>
 
 <div>
-    <input on:change={resetRolls} style="width:100%" bind:value={goFirst}/>
+    <input on:change={resetRolls} style="width:100%" bind:value={diceString}/>
 </div>
 
 <div>
