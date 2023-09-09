@@ -35,8 +35,6 @@ const resetRolls = () => {
 setInterval(appendRoll,10);
 </script>
 
-<p><a href="https://github.com/StevenClontz/explore-go-first">GitHub</a></p>
-
 <div>
     <Chart {results}/>
 </div>
@@ -54,4 +52,6 @@ setInterval(appendRoll,10);
     <button on:click={resetRolls}>
         Reset rolls
     </button>
+
+    <a href="https://github.com/StevenClontz/explore-go-first">GitHub</a>
 </div>
