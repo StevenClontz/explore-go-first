@@ -1,7 +1,8 @@
 <script lang="ts">
     import { onMount } from 'svelte'
     import Chart from 'chart.js/auto'
-    let chartDiv:HTMLCanvasElement
+    let chartCanvas:HTMLCanvasElement
+    let chart:Chart
     export let results:number[][]
     $: firsts = results.reduce((p,c)=>{
         let first = c.indexOf(1)
@@ -9,10 +10,10 @@
         next[first] = next[first]+1
         return next
     },[0,0,0,0,0])
-
-    onMount(() => {
-        new Chart(
-            chartDiv,
+    $: firstPercents = firsts.map(n=>n/firsts.reduce((a,b)=>a+b,0))
+    onMount(()=>{
+        chart = new Chart(
+            chartCanvas,
             {
                 type: 'line',
                 data: {
@@ -20,7 +21,7 @@
                     datasets: [
                         {
                             label: 'Percentage of firsts',
-                            data: firsts.map(n=>n/firsts.reduce((a,b)=>a+b,0))
+                            data: []
                         }
                     ]
                 },
@@ -35,10 +36,12 @@
             }
         );
     })
+    $: if (chart) {
+        chart.data.datasets[0].data = firstPercents
+        chart.update()
+    }
 </script>
 
 <div>
-    <canvas bind:this={chartDiv}/>
+    <canvas bind:this={chartCanvas}/>
 </div>
-
-{firsts}

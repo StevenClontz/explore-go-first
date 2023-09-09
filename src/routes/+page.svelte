@@ -26,7 +26,13 @@ const appendRoll = () => {
         results = [...results, result(newRoll)]
     }
 }
-setInterval(appendRoll,500);
+const resetRolls = () => {
+    rolling = false
+    rolls = []
+    displayRolls = ""
+    results = []
+}
+setInterval(appendRoll,10);
 </script>
 
 <textarea disabled rows="10" value={displayRolls}/>
@@ -38,7 +44,8 @@ setInterval(appendRoll,500);
         Start rolling
     {/if}
 </button>
+<button on:click={resetRolls}>
+    Reset rolls
+</button>
 
-{#key results}
 <Chart {results}/>
-{/key}
