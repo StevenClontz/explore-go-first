@@ -1,30 +1,23 @@
 <script lang="ts">
 import Chart from "../components/Chart.svelte";
-import { roll, result } from "$lib";
+import { Dice } from "$lib";
 let diceString:string = "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
-let rolls : number[][] = []
-let results : number[][] = []
-let displayRolls = ""
+let dice = new Dice(diceString)
 let rolling = false
-const appendRoll = () => {
+const rollDice = () => {
     if (rolling) {
-        let newRoll = roll(diceString)
-        rolls = [...rolls, newRoll]
-        displayRolls = newRoll.toString() + " / " + result(newRoll).toString() + "\n" + displayRolls
-        results = [...results, result(newRoll)]
+        dice.rollDice(); dice = dice
     }
 }
 const resetRolls = () => {
     rolling = false
-    rolls = []
-    displayRolls = ""
-    results = []
+    dice = new Dice(diceString)
 }
-setInterval(appendRoll,5);
+setInterval(rollDice,5);
 </script>
 
 <div>
-    <Chart {results} {diceString}/>
+    <Chart {dice}/>
 </div>
 
 <div>
@@ -32,7 +25,7 @@ setInterval(appendRoll,5);
 </div>
 
 <div>
-    <textarea disabled rows="10" cols="40" value={displayRolls}/>
+    <textarea disabled rows="10" cols="40" value={dice.display()}/>
     
     <button on:click={()=>rolling=!rolling}>
         {#if rolling}
@@ -41,6 +34,7 @@ setInterval(appendRoll,5);
             Start rolling
         {/if}
     </button>
+    Rolls={dice.rolls.length} 
     <button on:click={resetRolls}>
         Reset rolls
     </button>
