@@ -4,13 +4,21 @@
     let chartCanvas:HTMLCanvasElement
     let chart:Chart
     export let results:number[][]
-    $: firsts = results.reduce((p,c)=>{
-        let first = c.indexOf(1)
-        let next = p
-        next[first] = next[first]+1
-        return next
-    },[0,0,0,0,0])
-    $: firstPercents = firsts.map(n=>n/firsts.reduce((a,b)=>a+b,0))
+    const countPlaces = (rs:number[][], place:number) => {
+        return rs.reduce((p,c)=>{
+            let first = c.indexOf(place)
+            let next = p
+            next[first] = next[first]+1
+            return next
+        },[0,0,0,0,0])
+    }
+    $: percents = [1,2,3,4,5].map(place=>{
+        if (results.length==0) {
+            return [0,0,0,0,0]
+        } else {
+            return countPlaces(results,place).map(n=>n/countPlaces(results,place).reduce((a,b)=>a+b,0))
+        }
+    })
     onMount(()=>{
         chart = new Chart(
             chartCanvas,
@@ -21,6 +29,22 @@
                     datasets: [
                         {
                             label: 'Percentage of firsts',
+                            data: []
+                        },
+                        {
+                            label: 'Percentage of seconds',
+                            data: []
+                        },
+                        {
+                            label: 'Percentage of thirds',
+                            data: []
+                        },
+                        {
+                            label: 'Percentage of fourths',
+                            data: []
+                        },
+                        {
+                            label: 'Percentage of fifths',
                             data: []
                         }
                     ]
@@ -37,7 +61,7 @@
         );
     })
     $: if (chart) {
-        chart.data.datasets[0].data = firstPercents
+        percents.forEach((percent,i)=>chart.data.datasets[i].data=percent)
         chart.update()
     }
 </script>

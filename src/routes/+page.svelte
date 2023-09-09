@@ -1,6 +1,6 @@
 <script lang="ts">
 import Chart from "../components/Chart.svelte";
-const goFirst:string = "abcdeedcbadcbeebcdaaaaecbddbceecbddbceaaaadcbeebcdabcdeedcbaaadcbeebcdabcdeedcbaaecdbbdceaecdbbdceaabcdeedcbadcbeebcdaaaaaaecbddbceaabceddecbdcebbecdaadcebbecdbceddecbaaecbddbceaaaaaadcebbecdaecdbbdceaabcdeedcbabcdeedcbaaecdbbdceadcebbecdaaaecbddbceabceddecbaaaadcebbecddcebbecdaaaabceddecbaecbddbcea"
+let goFirst:string = "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
 const faces = ["a","b","c","d","e"].map(l=>[...goFirst.matchAll(
     new RegExp(l,"g"))].map(v=>typeof v.index == "undefined" ? 0 : v.index+1)
 )
@@ -32,11 +32,15 @@ const resetRolls = () => {
     displayRolls = ""
     results = []
 }
-setInterval(appendRoll,10);
+setInterval(appendRoll,5);
 </script>
 
 <div>
     <Chart {results}/>
+</div>
+
+<div>
+    <input style="width:100%" bind:value={goFirst}/>
 </div>
 
 <div>
