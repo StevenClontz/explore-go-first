@@ -24,7 +24,7 @@ export class Dice {
     rolls: number[][]
    
     constructor(code: string) {
-        this.names = [...new Set(code.split(""))].sort().slice(0,5)
+        this.names = [...new Set(code.split(""))].sort()
         this.code = substringUsingCharacters(code,this.names)
         this.ranks = range(this.names.length)
         this.faces = this.names.map(dieName=>{
