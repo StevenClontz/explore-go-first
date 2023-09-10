@@ -10,6 +10,17 @@
         dice.ranks.forEach(rank=>{
             c.data.datasets[rank].data = dice.percentages[rank]
         })
+        if (c.options.scales && c.options.scales.y) {
+            c.options.scales.y.min = Math.min(
+                Math.floor(dice.minPercentage()),
+                Math.max(0,Math.round(dice.averagePercentage())-5)
+            )
+            c.options.scales.y.max = Math.max(
+                Math.ceil(dice.maxPercentage()),
+                Math.min(100,Math.round(dice.averagePercentage())+5),
+                10
+            )
+        }
         c.update()
     }
     onMount(()=>{
@@ -30,7 +41,7 @@
                     scales: {
                         y: {
                             min: 0,
-                            max: 1,
+                            max: 100,
                         }
                     }
                 }

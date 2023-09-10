@@ -43,11 +43,11 @@ export class Dice {
     rollDice():void {
         const newRoll = this.names.map(dieName=>sample(this.getFaces(dieName)))
         const prevCount = this.rolls.length
-        let percentageMults = this.percentages.map(ps=>ps.map(p=>p*prevCount))
+        let percentageMults = this.percentages.map(ps=>ps.map(p=>p*prevCount/100))
         this.result(newRoll).forEach((rank,dieIndex)=>{
             percentageMults[rank][dieIndex] += 1
         })
-        this.percentages = percentageMults.map(ps=>ps.map(p=>p/(prevCount+1)))
+        this.percentages = percentageMults.map(ps=>ps.map(p=>p/(prevCount+1)*100))
         this.rolls.push(newRoll)
         this.displayLines = [
             newRoll.toString()+" / "+this.result(newRoll).toString(),
@@ -62,5 +62,25 @@ export class Dice {
 
     display():string {
         return this.displayLines.join("\n")
+    }
+
+    count():number {
+        return this.names.length
+    }
+
+    flatPercentages():number[] {
+        return this.percentages.reduce((p,c)=>[...p,...c],[])
+    }
+    
+    averagePercentage():number {
+        return this.flatPercentages().reduce((p,c)=>p+c,0)/this.count()/this.count()
+    }
+    
+    maxPercentage():number {
+        return Math.max(...this.flatPercentages())
+    }
+    
+    minPercentage():number {
+        return Math.min(...this.flatPercentages())
     }
 }
