@@ -17,7 +17,9 @@ setInterval(rollDice,5);
 </script>
 
 <div>
+    {#key diceString}
     <Chart {dice}/>
+    {/key}
 </div>
 
 <div>
