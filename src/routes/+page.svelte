@@ -37,6 +37,10 @@ setInterval(rollDice,1);
 </div>
 
 <div>
+    Rolls={dice.rolls.length} 
+</div>
+
+<div>
     <textarea disabled rows="10" cols="40" value={dice.display()}/>
     
     <button on:click={()=>rolling=!rolling}>
@@ -46,7 +50,6 @@ setInterval(rollDice,1);
             Start rolling
         {/if}
     </button>
-    Rolls={dice.rolls.length} 
     <button on:click={resetRolls}>
         Reset rolls
     </button>
