@@ -8,8 +8,32 @@
         "code": "abcddcbadbaccabdcbaddabccbaddabcdbaccabdabcddcba"
     },
     {
+        "name": "Perm-fair d24+d32+d48+d72+d90 (Vanetti)",
+        "code": "aaaaaaabcdedccccdedcbbbcdedccccdedcbbbcdedccccdedcbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcdedccccdedcbbbcdedccccdedcbbbcdedccccdedcbaaaaaaaaaaaabcdedccccdedcbbbcdedccccdedcbbbcdedccccdedcbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcdedccccdedcbbbcdedccccdedcbbbcdedccccdedcbaaaaaaa"
+    },
+    {
+        "name": "Perm-fair d20+d24+d36+d48+d72 (Harshbarger)",
+        "code": "edcabaccccabacddddcabaccccabacdeeeeedcabaccccabacddddcabaccccabacdedcabaccccabacddddcabaccccabacdeeeeeedcabaccccabacddddcabaccccabacdedcabaccccabacddddcabaccccabacdeeeeedcabaccccabacddddcabaccccabacde"
+    },
+    {
+        "name": "Place-fair 5d60 (Grime and Pollock)",
+        "code": "eabcddbacecabdeedabcdcbaeecbadcabdeebacddcbaeecbadcbadeedbacedabcdabceedabcdcabeecabddbacecabdeebacddcabeedbacdbacedabceeabcdeabcdecabdcbadeebacddcabeecabddcbaeecbaddabcecbadecbadeecabdebacddcbaeedbacdabceebacdedbacdabceecbadcabdeedabcdcabedbaceecabddbaceeabcddcabeecbadcabdeedabcdcbaeedbaceabcdcbade"
+    },
+    {
+        "name": "Perm-fair d20+d36+2d48+d54 (Harshbarger)",
+        "code": "eacdbbddcbccdbaadaacdbbcbddccdbaeeeeeacdbbddcbccdbaadaacdbbcbddccdbaeacdbbddcbccdbaadaacdbbcbddccdbaeeeeeeacdbbddcbccdbaadaacdbbcbddccdbaeacdbbddcbccdbaadaacdbbcbddccdbaeeeeeacdbbddcbccdbaadaacdbbcbddccdbae"
+    },
+    {
+        "name": "Perm-fair 5d120 (Purcell)",
+        "code": "eeacbddbcabcdaadcbdcabbacdeeeeeeeedcabbacdbcdaadcbacbddbcaeeeedcbaabcdbcaddacbacdbbdcaeeeeeeeeacdbbdcabcaddacbdcbaabcdeeaaecbddbcebcdeedcbdcebbecdaaaaaaaadcebbecdbcdeedcbecbddbceaaaadcbeebcdbceddecbecdbbdceaaaaaaaaecdbbdcebceddecbdcbeebcdaaddecabbaceacbeebcabceaaecbddddddddbceaaecbacbeebcaecabbaceddddbcaeeacbacebbecaecbaabceddddddddecbaabceacebbecabcaeeacbddbbecaddaceacdeedcadceaaecdbbbbbbbbdceaaecdacdeedcaecaddacebbbbdcaeeacdaceddecaecdaadcebbbbbbbbecdaadceaceddecadcaeeacdbbccaedbbdeadebaabedbeaddaebccccccccbeaddaebdebaabedaedbbdeaccccbedaadebdeabbaedaebddbeaccccccccaebddbeadeabbaedbedaadebcc"
+    },
+    {
+        "name": "Perm-fair d20+4d36 (Cohen)",
+        "code": "ecbdaadbcabcddcbadbaccabdeeeeedbaccabdcbdaadbcabcddcbaeabcddcbadbaccabdcbdaadbceeeeeeabcddcbadbaccabdcbdaadbcedbaccabdcbdaadbcabcddcbaeeeeecbdaadbcabcddcbadbaccabde"
+    },
+    {
         "name": "Perm-fair 5d60 (Meyer)",
-        "code": "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
+        "code": "abcdeedcbadcbeebcdaaaaecbddbceecbddbceaaaadcbeebcdabcdeedcbaaadcbeebcdabcdeedcbaaecdbbdceaecdbbdceaabcdeedcbadcbeebcdaaaaaaecbddbceaabceddecbdcebbecdaadcebbecdbceddecbaaecbddbceaaaaaadcebbecdaecdbbdceaabcdeedcbabcdeedcbaaecdbbdceadcebbecdaaaecbddbceabceddecbaaaadcebbecddcebbecdaaaabceddecbaecbddbcea"
     },
     {
         "name": "Naive serpentine",

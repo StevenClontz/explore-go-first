@@ -22,6 +22,10 @@ const resetRolls = () => {
 setInterval(rollDice,1);
 </script>
 
+<svelte:head>
+    <title>Explore Go-First Dice</title>
+</svelte:head>
+
 <div>
     {#key code}
     <Chart {dice}/>
