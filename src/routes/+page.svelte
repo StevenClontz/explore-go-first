@@ -37,6 +37,18 @@ $: if (code) {
 </div>
 
 <div>
+    <select style="width:100%" bind:value={code} on:change={()=>rolling=false}>
+        {#each defaultDice as defaultDie}
+            <option value={defaultDie.code}>
+                {defaultDie.name}:
+                {defaultDie.code.slice(0,10)}
+                {#if defaultDie.code.length > 10}...{/if}
+            </option>
+        {/each}
+    </select>
+</div>
+
+<div>
     <input style="width:100%" bind:value={code}/>
 </div>
 
@@ -60,16 +72,6 @@ $: if (code) {
     <button on:click={resetRolls}>
         Reset rolls
     </button>
-
-    <select bind:value={code} on:change={()=>rolling=false}>
-		{#each defaultDice as defaultDie}
-			<option value={defaultDie.code}>
-				{defaultDie.name}:
-                {defaultDie.code.slice(0,10)}
-                {#if defaultDie.code.length > 10}...{/if}
-			</option>
-		{/each}
-	</select>
 </div>
 
 <p>
