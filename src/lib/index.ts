@@ -91,6 +91,11 @@ export class Dice {
     minPercentage():number {
         return Math.min(...this.flatPercentages())
     }
+    
+    percentageRange():number {
+        return this.maxPercentage()-this.minPercentage()
+    }
+
     permCheckString():string {
         const permCheck = this.permCheck
         if (permCheck) {

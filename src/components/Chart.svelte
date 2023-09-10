@@ -13,11 +13,11 @@
         if (c.options.scales && c.options.scales.y) {
             c.options.scales.y.min = Math.min(
                 Math.floor(dice.minPercentage()),
-                Math.max(0,Math.round(dice.averagePercentage())-5)
+                Math.max(0,Math.floor(dice.averagePercentage()-dice.percentageRange()))
             )
             c.options.scales.y.max = Math.max(
                 Math.ceil(dice.maxPercentage()),
-                Math.min(100,Math.round(dice.averagePercentage())+5),
+                Math.min(100,Math.ceil(dice.averagePercentage()+dice.percentageRange())),
                 10
             )
         }
