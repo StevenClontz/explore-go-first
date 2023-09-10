@@ -8,7 +8,7 @@ interface defaultDiceI {
 }
 const defaultDice : defaultDiceI[] = JSON.parse(defaultDiceJson)
 let code:string = defaultDice[0].code
-$: dice = new Dice(code)
+let dice = new Dice(code)
 let rolling = false
 const rollDice = () => {
     if (rolling) {
@@ -20,6 +20,9 @@ const resetRolls = () => {
     dice = new Dice(code)
 }
 setInterval(rollDice,1);
+$: if (code) {
+    resetRolls()
+}
 </script>
 
 <svelte:head>
@@ -33,7 +36,7 @@ setInterval(rollDice,1);
 </div>
 
 <div>
-    <input on:change={resetRolls} style="width:100%" bind:value={code}/>
+    <input style="width:100%" bind:value={code}/>
 </div>
 
 <div>
