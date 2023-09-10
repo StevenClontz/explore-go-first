@@ -46,7 +46,7 @@ $: if (code) {
 
 <div>
     <textarea disabled rows="10" cols="40" value={dice.display()}/>
-    <textarea disabled rows="10" cols="40" value={JSON.stringify(computePermCheck(code),undefined,"  ")}/>
+    <textarea disabled rows="10" cols="40" value={dice.permCheckString()}/>
 </div>
 
 <div>

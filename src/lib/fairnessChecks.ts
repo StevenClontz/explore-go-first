@@ -1,4 +1,4 @@
-interface fairnessCheck {
+export interface fairnessCheck {
     [permutation:string]:number
 }
 
@@ -31,8 +31,3 @@ export const computePermCheck = (code:string) : fairnessCheck => {
     return sortedPermCheck
 }
 
-// ,
-//     {
-//         "name": "Naive serpentine",
-//         "code": "abcdefghhgfedcbaabcdefghhgfedcbaabcdefghhgfedcba"
-//     }

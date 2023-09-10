@@ -1,5 +1,7 @@
 // place files you want to import through the `$lib` alias in this folder.
 
+import { type fairnessCheck, computePermCheck } from "./fairnessChecks"
+
 export function sample<Type>(arr: Type[]): Type {
     // returns random element of array
     return arr[Math.floor((Math.random()*arr.length))]
@@ -22,6 +24,7 @@ export class Dice {
     percentages: number[][]
     displayLines: string[]
     rolls: number[][]
+    permCheck: fairnessCheck|undefined
    
     constructor(code: string) {
         this.names = [...new Set(code.split(""))].sort()
@@ -34,6 +37,11 @@ export class Dice {
         this.percentages = this.names.map(_=>this.names.map(_=>0))
         this.displayLines = []
         this.rolls = []
+        if (this.count()>6) {
+            this.permCheck = undefined
+        } else {
+            this.permCheck = computePermCheck(this.code)
+        }
     }
 
     getFaces(dieName:string) {
@@ -82,5 +90,12 @@ export class Dice {
     
     minPercentage():number {
         return Math.min(...this.flatPercentages())
+    }
+    permCheckString():string {
+        const permCheck = this.permCheck
+        if (permCheck) {
+            return JSON.stringify(permCheck, undefined, "  ")
+        }
+        return "permCheck unavailable"
     }
 }

@@ -34,5 +34,9 @@
     {
         "name": "Perm-fair 5d60 (Meyer)",
         "code": "abcdeedcbadcbeebcdaaaaecbddbceecbddbceaaaadcbeebcdabcdeedcbaaadcbeebcdabcdeedcbaaecdbbdceaecdbbdceaabcdeedcbadcbeebcdaaaaaaecbddbceaabceddecbdcebbecdaadcebbecdbceddecbaaecbddbceaaaaaadcebbecdaecdbbdceaabcdeedcbabcdeedcbaaecdbbdceadcebbecdaaaecbddbceabceddecbaaaadcebbecddcebbecdaaaabceddecbaecbddbcea"
+    },
+    {
+        "name": "Naive serpentine",
+        "code": "abcdefghhgfedcbaabcdefghhgfedcbaabcdefghhgfedcba"
     }
 ]
