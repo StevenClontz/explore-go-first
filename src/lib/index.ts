@@ -5,27 +5,35 @@ export function sample<Type>(arr: Type[]): Type {
     return arr[Math.floor((Math.random()*arr.length))]
 }
 
+export const range = (n:number): number[] => {
+    return Array.from(new Array(n), (_,i) => i)
+}
+
+export const substringUsingCharacters = (str:string,chars:string[]): string => {
+    return str.split("").filter(l=>chars.includes(l)).join("");
+}
+
 export class Dice {
     diceString: string
     names: string[]
     ranks: number[]
     faces: number[][]
-    percentages: number[][]
     // this.percentages[i][j] = ith rank, jth die
+    percentages: number[][]
     displayLines: string[]
     rolls: number[][]
    
     constructor(diceString: string) {
-      this.diceString = diceString;
-      this.names = [...new Set(this.diceString.split(""))].sort().slice(0,5)
-      this.ranks = Array.from(new Array(this.names.length), (x,i) => i)
-      this.faces = this.names.map(dieName=>{
-        const matches = [...this.diceString.matchAll(new RegExp(dieName,"g"))]
-        return matches.map(match=>typeof match.index !== "undefined" ? match.index : 0)
-      })
-      this.percentages = this.names.map(_=>this.names.map(_=>0))
-      this.displayLines = []
-      this.rolls = []
+        this.names = [...new Set(diceString.split(""))].sort().slice(0,5)
+        this.diceString = substringUsingCharacters(diceString,this.names)
+        this.ranks = range(this.names.length)
+        this.faces = this.names.map(dieName=>{
+            const matches = [...this.diceString.matchAll(new RegExp(dieName,"g"))]
+            return matches.map(match=>typeof match.index !== "undefined" ? match.index : 0)
+        })
+        this.percentages = this.names.map(_=>this.names.map(_=>0))
+        this.displayLines = []
+        this.rolls = []
     }
 
     getFaces(dieName:string) {
