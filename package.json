@@ -4,9 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && touch build/.nojekyll",
+		"build": "vite build && touch build/.nojekyll && echo 'gofirst.clontz.org' > build/CNAME",
 		"preview": "vite preview",
-		"deploy": "gh-pages -d build",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
