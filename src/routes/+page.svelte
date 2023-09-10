@@ -1,6 +1,7 @@
 <script lang="ts">
 import Chart from "../components/Chart.svelte"
 import { Dice } from "$lib"
+import { computePermCheck } from "$lib/fairnessChecks";
 import defaultDiceJson from "$lib/defaultDice.json?raw"
 interface defaultDiceI {
     name: string
@@ -45,7 +46,10 @@ $: if (code) {
 
 <div>
     <textarea disabled rows="10" cols="40" value={dice.display()}/>
-    
+    <textarea disabled rows="10" cols="40" value={JSON.stringify(computePermCheck(code),undefined,"  ")}/>
+</div>
+
+<div>
     <button on:click={()=>rolling=!rolling}>
         {#if rolling}
             Stop rolling

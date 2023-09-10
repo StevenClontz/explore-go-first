@@ -1,6 +1,6 @@
 [
     {
-        "name": "First-fair 3d6 (Ford)",
+        "name": "Perm-fair 3d6 (Ford)",
         "code": "acbbacbccaabacbbac"
     },
     {
@@ -34,9 +34,5 @@
     {
         "name": "Perm-fair 5d60 (Meyer)",
         "code": "abcdeedcbadcbeebcdaaaaecbddbceecbddbceaaaadcbeebcdabcdeedcbaaadcbeebcdabcdeedcbaaecdbbdceaecdbbdceaabcdeedcbadcbeebcdaaaaaaecbddbceaabceddecbdcebbecdaadcebbecdbceddecbaaecbddbceaaaaaadcebbecdaecdbbdceaabcdeedcbabcdeedcbaaecdbbdceadcebbecdaaaecbddbceabceddecbaaaadcebbecddcebbecdaaaabceddecbaecbddbcea"
-    },
-    {
-        "name": "Naive serpentine",
-        "code": "abcdefghhgfedcbaabcdefghhgfedcbaabcdefghhgfedcba"
     }
 ]
