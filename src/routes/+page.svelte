@@ -60,5 +60,5 @@ setInterval(rollDice,1);
 
 <p>
     <a href="https://github.com/StevenClontz/explore-go-first">GitHub</a> |
-    <a href="http://www.ericharshbarger.org/dice/go_first_dice.html">Learn more</a>
+    <a href="http://gofirstdice.ericharshbarger.org/doku.php">Learn more</a>
 </p>
