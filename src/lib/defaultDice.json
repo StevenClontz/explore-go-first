@@ -1,0 +1,14 @@
+[
+    {
+        "name": "First-fair 3d6 (Ford)",
+        "code": "acbbacbccaabacbbac"
+    },
+    {
+        "name": "Perm-fair 4d12 (Ford)",
+        "code": "abcddcbadbaccabdcbaddabccbaddabcdbaccabdabcddcba"
+    },
+    {
+        "name": "Perm-fair 5d60 (Meyer)",
+        "code": "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
+    }
+]

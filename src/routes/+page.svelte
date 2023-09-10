@@ -1,8 +1,14 @@
 <script lang="ts">
-import Chart from "../components/Chart.svelte";
-import { Dice } from "$lib";
-let diceString:string = "abcdeedcbdcbeebcdaecbddbceaaaaaaaaaecbddbceadcbeebcdbcdeedcbaaecdbbdceadcebbecdbceddecbaaaabceddecbdcebbecdaaaecdbbdceaecbddbceaaabceddecbdcebbecdaaaaaaaadcebbecdbceddecbaaaecbddbceaecdbbdceaaadcebbecdbceddecbaaaabceddecbdcebbecdaecdbbdceaadcbeebcdbcdeedcbaecdbbdceaaaaaaaaaecdbbdceabcdeedcbdcbeebcda"
-$: dice = new Dice(diceString)
+import Chart from "../components/Chart.svelte"
+import { Dice } from "$lib"
+import defaultDiceJson from "$lib/defaultDice.json?raw"
+interface defaultDiceI {
+    name: string
+    code: string
+}
+const defaultDice : defaultDiceI[] = JSON.parse(defaultDiceJson)
+let code:string = defaultDice[0].code
+$: dice = new Dice(code)
 let rolling = false
 const rollDice = () => {
     if (rolling) {
@@ -11,19 +17,19 @@ const rollDice = () => {
 }
 const resetRolls = () => {
     rolling = false
-    dice = new Dice(diceString)
+    dice = new Dice(code)
 }
-setInterval(rollDice,5);
+setInterval(rollDice,1);
 </script>
 
 <div>
-    {#key diceString}
+    {#key code}
     <Chart {dice}/>
     {/key}
 </div>
 
 <div>
-    <input on:change={resetRolls} style="width:100%" bind:value={diceString}/>
+    <input on:change={resetRolls} style="width:100%" bind:value={code}/>
 </div>
 
 <div>
@@ -40,6 +46,16 @@ setInterval(rollDice,5);
     <button on:click={resetRolls}>
         Reset rolls
     </button>
+
+    <select bind:value={code} on:change={()=>rolling=false}>
+		{#each defaultDice as defaultDie}
+			<option value={defaultDie.code}>
+				{defaultDie.name}:
+                {defaultDie.code.slice(0,10)}
+                {#if defaultDie.code.length > 10}...{/if}
+			</option>
+		{/each}
+	</select>
 
     <a href="https://github.com/StevenClontz/explore-go-first">GitHub</a>
 </div>

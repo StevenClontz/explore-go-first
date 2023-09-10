@@ -14,7 +14,7 @@ export const substringUsingCharacters = (str:string,chars:string[]): string => {
 }
 
 export class Dice {
-    diceString: string
+    code: string
     names: string[]
     ranks: number[]
     faces: number[][]
@@ -23,12 +23,12 @@ export class Dice {
     displayLines: string[]
     rolls: number[][]
    
-    constructor(diceString: string) {
-        this.names = [...new Set(diceString.split(""))].sort().slice(0,5)
-        this.diceString = substringUsingCharacters(diceString,this.names)
+    constructor(code: string) {
+        this.names = [...new Set(code.split(""))].sort().slice(0,5)
+        this.code = substringUsingCharacters(code,this.names)
         this.ranks = range(this.names.length)
         this.faces = this.names.map(dieName=>{
-            const matches = [...this.diceString.matchAll(new RegExp(dieName,"g"))]
+            const matches = [...this.code.matchAll(new RegExp(dieName,"g"))]
             return matches.map(match=>typeof match.index !== "undefined" ? match.index : 0)
         })
         this.percentages = this.names.map(_=>this.names.map(_=>0))
