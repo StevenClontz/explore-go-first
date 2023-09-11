@@ -7,6 +7,10 @@ export function sample<Type>(arr: Type[]): Type {
     return arr[Math.floor((Math.random()*arr.length))]
 }
 
+export const charArray = (s:string) : string[] => {
+    return [...new Set(s.split(""))].sort()
+}
+
 export const range = (n:number): number[] => {
     return Array.from(new Array(n), (_,i) => i)
 }
@@ -27,7 +31,7 @@ export class Dice {
     permCheck: fairnessCheck|undefined
    
     constructor(code: string) {
-        this.names = [...new Set(code.split(""))].sort()
+        this.names = charArray(code)
         this.code = substringUsingCharacters(code,this.names)
         this.ranks = range(this.names.length)
         this.faces = this.names.map(dieName=>{
