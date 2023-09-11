@@ -1,13 +1,13 @@
 <script lang="ts">
 import Chart from "../components/Chart.svelte"
 import { Dice } from "$lib/dice"
-import defaultDiceJson from "$lib/defaultDice.json?raw"
-interface defaultDiceI {
+import exampleDiceJson from "$lib/exampleDice.json?raw"
+interface exampleDiceI {
     name: string
     code: string
 }
-const defaultDice : defaultDiceI[] = JSON.parse(defaultDiceJson)
-let code:string = defaultDice[0].code
+const exampleDice : exampleDiceI[] = JSON.parse(exampleDiceJson)
+let code:string = exampleDice[0].code
 let dice = new Dice(code)
 let rolling = false
 const rollDice = () => {
@@ -37,11 +37,11 @@ $: if (code) {
 
 <div>
     <select style="width:100%" bind:value={code} on:change={()=>rolling=false}>
-        {#each defaultDice as defaultDie}
-            <option value={defaultDie.code}>
-                {defaultDie.name}:
-                {defaultDie.code.slice(0,10)}
-                {#if defaultDie.code.length > 10}...{/if}
+        {#each exampleDice as exampleDie}
+            <option value={exampleDie.code}>
+                {exampleDie.name}:
+                {exampleDie.code.slice(0,10)}
+                {#if exampleDie.code.length > 10}...{/if}
             </option>
         {/each}
     </select>
