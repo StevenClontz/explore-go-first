@@ -1,7 +1,6 @@
 <script lang="ts">
 import Chart from "../components/Chart.svelte"
-import { Dice } from "$lib"
-import { computePermCheck } from "$lib/fairnessChecks";
+import { Dice } from "$lib/dice"
 import defaultDiceJson from "$lib/defaultDice.json?raw"
 interface defaultDiceI {
     name: string
