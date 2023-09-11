@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte'
     import Chart from 'chart.js/auto'
-    import type { Dice } from '$lib'
+    import type { Dice } from '$lib/dice'
     let chartCanvas:HTMLCanvasElement
     let chart:Chart
     export let dice:Dice
@@ -13,11 +13,11 @@
         if (c.options.scales && c.options.scales.y) {
             c.options.scales.y.min = Math.min(
                 Math.floor(dice.minPercentage()),
-                Math.max(0,Math.floor(dice.averagePercentage()-dice.percentageRange()))
+                Math.max(0,Math.floor(dice.minPercentage()-0.5*dice.percentageRange()))
             )
             c.options.scales.y.max = Math.max(
                 Math.ceil(dice.maxPercentage()),
-                Math.min(100,Math.ceil(dice.averagePercentage()+dice.percentageRange())),
+                Math.min(100,Math.ceil(dice.maxPercentage()+0.5*dice.percentageRange())),
                 10
             )
         }
