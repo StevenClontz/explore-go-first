@@ -43,7 +43,9 @@
                     datasets: dice.ranks.map(rank=>{
                         return {
                             label: "% rank "+rank.toString(),
-                            data:dice.percentages[rank]
+                            data:dice.percentages[rank],
+                            cubicInterpolationMode: 'monotone',
+                            tension: 0.2
                         }
                     }),
                 },
