@@ -1,5 +1,5 @@
 <script lang="ts">
-import Chart from "../components/Chart.svelte"
+import Chart from "$lib/components/Chart.svelte"
 import { Dice } from "$lib/dice"
 import exampleDiceJson from "$lib/exampleDice.json?raw"
 import { page } from "$app/stores";
