@@ -2,12 +2,17 @@
 import Chart from "../components/Chart.svelte"
 import { Dice } from "$lib/dice"
 import exampleDiceJson from "$lib/exampleDice.json?raw"
+import { page } from "$app/stores";
 interface exampleDiceI {
     name: string
     code: string
 }
 const exampleDice : exampleDiceI[] = JSON.parse(exampleDiceJson)
 let code:string = exampleDice[0].code
+if ($page.url.hash) {
+    code = $page.url.hash.slice(1)
+}
+let codeSelection:string|undefined
 let dice = new Dice(code)
 let rolling = false
 const rollDice = () => {
@@ -19,9 +24,20 @@ const resetRolls = () => {
     rolling = false
     dice = new Dice(code)
 }
+const updateCodeSelection = () => {
+    if (codeSelection) {
+        code = codeSelection
+    }
+    resetRolls()
+}
 setInterval(rollDice,1);
 $: if (code) {
     resetRolls()
+    if (exampleDice.map(d=>d.code).includes(code)) {
+        codeSelection = code
+    } else {
+        codeSelection = undefined
+    }
 }
 </script>
 
@@ -36,12 +52,13 @@ $: if (code) {
 </div>
 
 <div>
-    <select style="width:100%" bind:value={code} on:change={()=>rolling=false}>
+    <select style="width:100%" bind:value={codeSelection} on:change={updateCodeSelection}>
+        <option value={undefined}>
+            Custom die
+        </option>
         {#each exampleDice as exampleDie}
             <option value={exampleDie.code}>
-                {exampleDie.name}:
-                {exampleDie.code.slice(0,10)}
-                {#if exampleDie.code.length > 10}...{/if}
+                {exampleDie.name}
             </option>
         {/each}
     </select>
@@ -49,6 +66,11 @@ $: if (code) {
 
 <div>
     <input style="width:100%" bind:value={code}/>
+</div>
+
+<div>
+    Share dice URL:
+    <input disabled style="width:100%" value={$page.url.toString().split("#")[0]+"#"+code}/>
 </div>
 
 <div>
