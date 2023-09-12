@@ -3,6 +3,10 @@
 A static web app for exporing [Go First Dice](http://gofirstdice.ericharshbarger.org)
 in your browser.
 
+## Dice Assets
+
+Assets in `static/dice` taken from WikiMedia and used under GNU Free Documentation License, Version 1.2.
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
