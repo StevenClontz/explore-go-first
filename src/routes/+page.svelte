@@ -17,6 +17,7 @@ const updateCodeSelection = () => {
     if (codeSelection) {
         code = codeSelection
     }
+    dice = new Dice(code)
 }
 $: if (code) {
     if (exampleDice.map(d=>d.code).includes(code)) {
@@ -24,6 +25,7 @@ $: if (code) {
     } else {
         codeSelection = undefined
     }
+    dice = new Dice(code)
 }
 </script>
 
@@ -49,8 +51,29 @@ $: if (code) {
 </div>
 
 
+{#each dice.names as name}
+    <div>
+        {#if dice.getSides(name) == 2}
+            <img style="height:4em;" alt="d2" src="/dice/2.svg" />
+        {:else if dice.getSides(name) == 4}
+            <img style="height:4em;" alt="d4" src="/dice/4.svg" />
+        {:else if dice.getSides(name) == 6}
+            <img style="height:4em;" alt="d6" src="/dice/6.svg" />
+        {:else if dice.getSides(name) == 8}
+            <img style="height:4em;" alt="d8" src="/dice/8.svg" />
+        {:else if dice.getSides(name) == 12}
+            <img style="height:4em;" alt="d12" src="/dice/12.svg" />
+        {:else if dice.getSides(name) == 20}
+            <img style="height:4em;" alt="d20" src="/dice/20.svg" />
+        {:else}
+            <img style="height:4em;" alt="non-Platonic die" src="/dice/other.svg" />
+        {/if}
+        <p>{dice.getFaces(name).map(i=>(i+1).toString()).join(" ")}</p>
+    </div>
+{/each}
+
 <p>
-    <a href="/dashboard">Dashboard</a>
+    <a href={"/dashboard#"+code}>Dashboard</a>
 </p>
 
 <p>

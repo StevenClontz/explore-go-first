@@ -35,6 +35,10 @@ export class Dice {
         return this.faces[this.names.indexOf(dieName)]
     }
 
+    getSides(dieName:string) {
+        return this.getFaces(dieName).length
+    }
+
     rollDice():void {
         const newRoll = this.names.map(dieName=>sample(this.getFaces(dieName)))
         const prevCount = this.rolls.length
