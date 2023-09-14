@@ -3,16 +3,13 @@ import Chart from "$lib/components/Chart.svelte"
 import { Dice } from "$lib/dice"
 import exampleDiceJson from "$lib/exampleDice.json?raw"
 import { page } from "$app/stores";
+import { onMount } from "svelte";
 interface exampleDiceI {
     name: string
     code: string
 }
 const exampleDice : exampleDiceI[] = JSON.parse(exampleDiceJson)
 let code:string = exampleDice[0].code
-const paramCode = $page.url.searchParams.get("code")
-if (paramCode) {
-    code = paramCode
-}
 let codeSelection:string|undefined
 let dice = new Dice(code)
 let rolling = false
@@ -40,6 +37,12 @@ $: if (code) {
         codeSelection = undefined
     }
 }
+onMount(()=>{
+    const paramCode = $page.url.searchParams.get("code")
+    if (paramCode) {
+        code = paramCode
+    }
+})
 </script>
 
 <svelte:head>
@@ -71,7 +74,7 @@ $: if (code) {
 
 <div>
     Share dice URL:
-    <input disabled style="width:100%" value={$page.url.href.split("?")[0]+"?code="+code}/>
+    <input disabled style="width:100%" value={$page.url.href.split("?")[0]+"/dashboard?code="+code}/>
 </div>
 
 <div>
@@ -97,6 +100,7 @@ $: if (code) {
 </div>
 
 <p>
+    <a href={"/?code="+code}>Home</a> |
     <a href="https://github.com/StevenClontz/explore-go-first">GitHub</a> |
-    <a href="http://gofirstdice.ericharshbarger.org">Learn more</a>
+    <a href="http://gofirstdice.ericharshbarger.org">Learn more</a> 
 </p>

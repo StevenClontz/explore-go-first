@@ -2,16 +2,13 @@
 import { Dice } from "$lib/dice"
 import exampleDiceJson from "$lib/exampleDice.json?raw"
 import { page } from "$app/stores";
+import { onMount } from "svelte";
 interface exampleDiceI {
     name: string
     code: string
 }
 const exampleDice : exampleDiceI[] = JSON.parse(exampleDiceJson)
 let code:string = exampleDice[0].code
-const paramCode = $page.url.searchParams.get("code")
-if (paramCode) {
-    code = paramCode
-}
 let codeSelection:string|undefined
 let dice = new Dice(code)
 const updateCodeSelection = () => {
@@ -28,6 +25,12 @@ $: if (code) {
     }
     dice = new Dice(code)
 }
+onMount(()=>{
+    const paramCode = $page.url.searchParams.get("code")
+    if (paramCode) {
+        code = paramCode
+    }
+})
 </script>
 
 <svelte:head>
@@ -74,10 +77,7 @@ $: if (code) {
 {/each}
 
 <p>
-    <a href={$page.url.href.split("?")[0]+"?code="+code}>Dashboard</a>
-</p>
-
-<p>
+    <a href={"/dashboard?code="+code}>Dashboard</a> |
     <a href="https://github.com/StevenClontz/explore-go-first">GitHub</a> |
     <a href="http://gofirstdice.ericharshbarger.org">Learn more</a>
 </p>
