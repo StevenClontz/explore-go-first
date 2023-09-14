@@ -9,8 +9,9 @@ interface exampleDiceI {
 }
 const exampleDice : exampleDiceI[] = JSON.parse(exampleDiceJson)
 let code:string = exampleDice[0].code
-if ($page.url.hash) {
-    code = $page.url.hash.slice(1)
+const paramCode = $page.url.searchParams.get("code")
+if (paramCode) {
+    code = paramCode
 }
 let codeSelection:string|undefined
 let dice = new Dice(code)
@@ -70,7 +71,7 @@ $: if (code) {
 
 <div>
     Share dice URL:
-    <input disabled style="width:100%" value={$page.url.toString().split("#")[0]+"#"+code}/>
+    <input disabled style="width:100%" value={$page.url.href.split("?")[0]+"?code="+code}/>
 </div>
 
 <div>
