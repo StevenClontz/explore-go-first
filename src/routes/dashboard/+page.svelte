@@ -74,7 +74,7 @@ onMount(()=>{
 
 <div>
     Share dice URL:
-    <input disabled style="width:100%" value={$page.url.href.split("?")[0]+"/dashboard?code="+code}/>
+    <input disabled style="width:100%" value={$page.url.href.split("?")[0]+"?code="+code}/>
 </div>
 
 <div>
