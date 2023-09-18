@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Dice } from "$lib/dice"
 import exampleDiceJson from "$lib/exampleDice.json?raw"
+import ShareUrl from "$lib/components/ShareUrl.svelte";
 import { page } from "$app/stores";
 import { onMount } from "svelte";
 interface exampleDiceI {
@@ -34,7 +35,7 @@ onMount(()=>{
 </script>
 
 <svelte:head>
-    <title>Explore Go-First Dice</title>
+    <title>Try Go-First Dice</title>
 </svelte:head>
 
 <div>
@@ -52,6 +53,10 @@ onMount(()=>{
 
 <div>
     <input style="width:100%" bind:value={code}/>
+</div>
+
+<div>
+    <ShareUrl href={$page.url.href} {code}/>
 </div>
 
 

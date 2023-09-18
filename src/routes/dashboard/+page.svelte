@@ -1,5 +1,6 @@
 <script lang="ts">
 import Chart from "$lib/components/Chart.svelte"
+import ShareUrl from "$lib/components/ShareUrl.svelte";
 import { Dice } from "$lib/dice"
 import exampleDiceJson from "$lib/exampleDice.json?raw"
 import { page } from "$app/stores";
@@ -50,12 +51,6 @@ onMount(()=>{
 </svelte:head>
 
 <div>
-    {#key code}
-    <Chart {dice}/>
-    {/key}
-</div>
-
-<div>
     <select style="width:100%" bind:value={codeSelection} on:change={updateCodeSelection}>
         <option value={undefined}>
             Custom die
@@ -73,8 +68,13 @@ onMount(()=>{
 </div>
 
 <div>
-    Share dice URL:
-    <input disabled style="width:100%" value={$page.url.href.split("?")[0]+"?code="+code}/>
+    <ShareUrl href={$page.url.href} {code}/>
+</div>
+
+<div>
+    {#key code}
+    <Chart {dice}/>
+    {/key}
 </div>
 
 <div>
